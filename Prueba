@@ -1,0 +1,42 @@
+# OpenHands Task: Sprint 1 - Infrastructure, Architecture & Core Data Schema (HR Core & ATS)
+
+## OBJECTIVE
+Build the initial repository setup, database schema for Core HR, and the ATS (Applicant Tracking System) candidate pipeline.
+
+## TECHNICAL STACK & REQUIREMENTS
+- **Backend:** Python (FastAPI / Pydantic) or Node.js (TypeScript / NestJS) with PostgreSQL (Prisma or SQLAlchemy).
+- **Security:** PII data encryption at rest (AES-256), environment variable management.
+- **Testing:** Pytest / Jest with >80% coverage.
+
+## STEPS TO EXECUTE
+
+### 1. Repository & Database Initialization
+- Set up project directory structure (`/src`, `/tests`, `/migrations`, `/docs`).
+- Create PostgreSQL migration scripts for:
+  - `employees` (id, first_name, last_name, email, role_id, department_id, contract_type, hire_date, status, encrypted_pii).
+  - `departments` & `roles` (hierarchical structure).
+  - `candidates` (id, full_name, email, resume_url, status, score, notes).
+  - `job_postings` (id, title, description, department_id, status).
+
+### 2. Core HR API
+- Implement REST/GraphQL endpoints for:
+  - Employee CRUD operations.
+  - Department and organizational chart query API.
+  - PII encryption/decryption utilities.
+
+### 3. ATS (Applicant Tracking System)
+- Implement CV Parser interface (extracting skills, experience, education from text/PDFs).
+- Build candidate pipeline status state machine:
+  `APPLIED` -> `SCREENING` -> `INTERVIEW` -> `OFFER` -> `HIRED` / `REJECTED`.
+- API endpoints for job posting management and candidate applications.
+
+### 4. Verification & Testing
+- Write unit tests for all database models, encryption methods, and API routes.
+- Execute test suite and ensure all tests pass.
+- Generate OpenAPI/Swagger documentation at `/docs`.
+
+## DEFINITION OF DONE (DoN)
+- [ ] Database schema deployed via migration files.
+- [ ] CRUD APIs operational and validated with tests.
+- [ ] Candidate pipeline flow fully functional via API endpoints.
+- [ ] Test suite passing with zero critical errors.
